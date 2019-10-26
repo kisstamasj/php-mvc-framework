@@ -1,0 +1,18 @@
+{
+    "name": "kiss_tamas/mvc",
+    "description": "PHP MVC Framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kisstamasj",
+            "email": "48266482+kisstamasj@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.6.2"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}
