@@ -9,8 +9,7 @@ class View
 
     public $__view;
 
-    public function __construct()
-    {
+    public function __construct(){
         CSRFToken::generateToken();
     }
 

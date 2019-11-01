@@ -19,7 +19,7 @@ class Config
      */
     const dbhost = "localhost";
     const dbport = 3306;
-    const dbname = "task";
-    const dbusername = "root";
-    const dbpassword = "";
+    const dbname = "mvc_framework";
+    const dbusername = "mvc_framework";
+    const dbpassword = "LG5UuXrQMSCp6rHn";
 }

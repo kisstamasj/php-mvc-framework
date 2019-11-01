@@ -14,6 +14,8 @@ class Application
 {
     use Routes;
 
+    private static $instance;
+
     /**
      * Route manager
      *
@@ -35,13 +37,26 @@ class Application
      */
     public $url;
 
-    public function __construct()
+    private function __construct()
     {
         $this->url = isset($_GET['url']) ? $_GET['url'] : "/";
         $this->startSession();
-        $this->routeManager = new RouteManager($this);
-        $this->loadRoutes();
-        $this->route = $this->routeManager->getRoute();
+    }
+
+    /**
+     * Get the Application instance
+     *
+     * @return void
+     */
+    public static function getInstance()
+    {
+        if(self::$instance == null){
+            self::$instance = new Application();
+            self::$instance->routeManager = new RouteManager();
+            self::$instance->loadRoutes();
+            self::$instance->route = self::$instance->routeManager->getRoute();
+        }
+        return self::$instance;
     }
 
     /**
@@ -72,7 +87,7 @@ class Application
      */
     public function loadError($code)
     {
-        $class = new ErrorController($code, $this);
+        $class = new ErrorController($code);
         $class->render();
         die();
     }
@@ -87,7 +102,7 @@ class Application
         try
         {
             $middleware = "middlewares\\".$this->route->middleware;
-            $middleware = new $middleware($this);
+            $middleware = new $middleware();
             $middleware->handle();
 
             $file = "controllers\\".$this->route->controller.".php";
@@ -95,7 +110,7 @@ class Application
 
             if(!file_exists($file)) $this->loadError(404);
 
-            $controller = new $controller($this);
+            $controller = new $controller();
             $controller->{$this->route->function}();
 
         } catch (\Exception $e) {

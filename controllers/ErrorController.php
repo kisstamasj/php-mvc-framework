@@ -3,6 +3,7 @@
 namespace controllers;
 
 use \interfaces\ControllerInterface;
+use libraries\Application;
 
 class ErrorController extends Controller implements ControllerInterface
 {
@@ -13,9 +14,9 @@ class ErrorController extends Controller implements ControllerInterface
      */
     private $code;
 
-    public function __construct($code, $application)
+    public function __construct($code)
     {
-        parent::__construct($application);
+        parent::__construct(Application::getInstance());
         $this->code = $code;
     }
 

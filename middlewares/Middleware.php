@@ -13,8 +13,8 @@ class Middleware
      */
     protected $application;
 
-    public function __construct(Application $application)
+    public function __construct()
     {
-        $this->application = $application;
+        $this->application = Application::getInstance();
     }
 }

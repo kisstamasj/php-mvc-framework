@@ -16,9 +16,11 @@ class Controller
 
     protected $application;
 
-    public function __construct(Application $application)
+    public function __construct()
     {
-        $this->view = new View;
-        $this->application = $application;
+        $this->application = Application::getInstance();
+        if($this->application->route->middleware != 'Api'){
+            $this->view = new View();
+        }
     }
 }

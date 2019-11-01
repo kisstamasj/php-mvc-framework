@@ -20,9 +20,9 @@ class RouteManager
      */
     private $application;
 
-    public function __construct($application)
+    public function __construct()
     {
-        $this->application = $application;
+        $this->application = Application::getInstance();
     }
 
     /**

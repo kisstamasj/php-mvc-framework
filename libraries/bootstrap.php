@@ -2,7 +2,7 @@
 
 namespace libraries;
 
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 spl_autoload_register(function($className)
 {
